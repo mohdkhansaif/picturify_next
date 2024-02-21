@@ -1,20 +1,24 @@
+// Clerk authentication library for Next.js
 import { SignedIn, auth } from "@clerk/nextjs";
+// Next.js image component for optimized image loading
 import Image from "next/image";
+// Next.js navigation utility for redirecting
 import { redirect } from "next/navigation";
-
+// Custom header component
 import Header from "@/components/shared/Header";
+// Custom button component
 import { Button } from "@/components/ui/button";
+// Constant defining plans
 import { plans } from "@/constants";
+// Function to get user by ID
 import { getUserById } from "@/lib/actions/user.actions";
+// Checkout component
 import Checkout from "@/components/shared/Checkout";
 
 const Credits = async () => {
   const { userId } = auth();
-
   if (!userId) redirect("/sign-in");
-
   const user = await getUserById(userId);
-
   return (
     <>
       <Header
@@ -34,22 +38,15 @@ const Credits = async () => {
                 <p className="h1-semibold text-dark-600">${plan.price}</p>
                 <p className="p-16-regular">{plan.credits} Credits</p>
               </div>
-
-              {/* Inclusions */}
               <ul className="flex flex-col gap-5 py-9">
                 {plan.inclusions.map((inclusion) => (
-                  <li
-                    key={plan.name + inclusion.label}
-                    className="flex items-center gap-4"
-                  >
+                  <li key={plan.name + inclusion.label} className="flex items-center gap-4">
                     <Image
-                      src={`/assets/icons/${
-                        inclusion.isIncluded ? "check.svg" : "cross.svg"
-                      }`}
+                      src={`/assets/icons/${inclusion.isIncluded ? "check.svg" : "cross.svg"
+                        }`}
                       alt="check"
                       width={24}
-                      height={24}
-                    />
+                      height={24}/>
                     <p className="p-16-regular">{inclusion.label}</p>
                   </li>
                 ))}

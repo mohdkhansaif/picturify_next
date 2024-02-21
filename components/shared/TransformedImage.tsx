@@ -1,10 +1,21 @@
 "use client"
 
+// Importing utility functions from utils file
 import { dataUrl, debounce, download, getImageSize } from '@/lib/utils'
+
+// Importing CldImage and getCldImageUrl from next-cloudinary package
 import { CldImage, getCldImageUrl } from 'next-cloudinary'
+
+// Importing PlaceholderValue from get-img-props file in next package
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props'
+
+// Importing Image component from next/image
 import Image from 'next/image'
+
+// Importing React package
 import React from 'react'
+
+
 
 const TransformedImage = ({ image, type, title, transformationConfig, isTransforming, setIsTransforming, hasDownload = false }: TransformedImageProps) => {
   const downloadHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

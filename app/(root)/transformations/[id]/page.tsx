@@ -1,23 +1,25 @@
+// Importing necessary modules
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
+// Importing custom components
 import Header from "@/components/shared/Header";
 import TransformedImage from "@/components/shared/TransformedImage";
 import { Button } from "@/components/ui/button";
-import { getImageById } from "@/lib/actions/image.actions";
-import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 
-const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
-  const { userId } = auth();
+// Importing utility functions
+import { getImageById } from "@/lib/actions/image.actions";
+import { getImageSize } from "@/lib/utils";
 
+  const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
+  const { userId } = auth();
   const image = await getImageById(id);
 
   return (
     <>
       <Header title={image.title} />
-
       <section className="mt-5 flex flex-wrap gap-4">
         <div className="p-14-medium md:p-16-medium flex gap-2">
           <p className="text-dark-600">Transformation:</p>
@@ -71,8 +73,7 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
               className="transformation-original_image"
             />
           </div>
-
-          {/* TRANSFORMED IMAGE */}
+          
           <TransformedImage
             image={image}
             type={image.transformationType}

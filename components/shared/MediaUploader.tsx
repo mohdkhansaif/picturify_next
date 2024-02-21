@@ -11,15 +11,14 @@ type MediaUploaderProps = {
   image: any;
   type: string;
 }
-
-const MediaUploader = ({
+  const MediaUploader = ({
   onValueChange,
   setImage,
   image,
   publicId,
   type
 }: MediaUploaderProps) => {
-  const { toast } = useToast();
+   const { toast } = useToast();
 
   const onUploadSuccessHandler = (result: any) => {
     setImage((prevState: any) => ({

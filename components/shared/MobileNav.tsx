@@ -25,7 +25,6 @@ const MobileNav = () => {
       <nav className="flex gap-2">
         <SignedIn>
           <UserButton afterSignOutUrl="/" />
-
           <Sheet>
             <SheetTrigger>
               <Image
@@ -71,7 +70,7 @@ const MobileNav = () => {
           </Sheet>
         </SignedIn>
 
-        <SignedOut>
+             <SignedOut>
                 <Button asChild className='button bg-purple-gradient bg-cover'>
                     <Link href='/sign-in'>Login</Link>
                 </Button>
@@ -80,5 +79,7 @@ const MobileNav = () => {
     </header>
   );
 };
+
+
 
 export default MobileNav;

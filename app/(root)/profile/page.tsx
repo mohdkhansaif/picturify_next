@@ -1,25 +1,22 @@
-import { auth } from "@clerk/nextjs";
-import Image from "next/image";
-import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs"; // Import authentication module from Clerk
+import Image from "next/image"; // Import Image component from Next.js
+import { redirect } from "next/navigation"; // Import redirect function from Next.js
 
-import { Collection } from "@/components/shared/Collection";
-import Header from "@/components/shared/Header";
-import { getUserImages } from "@/lib/actions/image.actions";
-import { getUserById } from "@/lib/actions/user.actions";
+import { Collection } from "@/components/shared/Collection"; // Import Collection component
+import Header from "@/components/shared/Header"; // Import Header component
+import { getUserImages } from "@/lib/actions/image.actions"; // Import function to get user images
+import { getUserById } from "@/lib/actions/user.actions"; // Import function to get user by ID
 
 const Profile = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const { userId } = auth();
-
   if (!userId) redirect("/sign-in");
-
   const user = await getUserById(userId);
   const images = await getUserImages({ page, userId: user._id });
 
   return (
     <>
       <Header title="Profile" />
-
       <section className="profile">
         <div className="profile-balance">
           <p className="p-14-medium md:p-16-medium">CREDITS AVAILABLE</p>

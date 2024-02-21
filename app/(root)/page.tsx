@@ -1,8 +1,14 @@
+// Importing Collection component from shared directory
 import { Collection } from "@/components/shared/Collection"
+// Importing navLinks constant from constants directory
 import { navLinks } from "@/constants"
+// Importing getAllImages function from image.actions file in lib/actions directory
 import { getAllImages } from "@/lib/actions/image.actions"
+// Importing Image component from next/image
 import Image from "next/image"
+// Importing Link component from next/link
 import Link from "next/link"
+
 
 const Home = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
